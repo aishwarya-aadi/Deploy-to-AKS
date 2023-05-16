@@ -57,6 +57,7 @@ stages:
           - task: KubernetesManifest@0
             inputs:
               action: 'createSecret'
+              kubernetesServiceConnection: "AKS-NEW"
               namespace: 'default'
               secretType: 'dockerRegistry'
               secretName: '$(acrsecret)'
@@ -78,6 +79,7 @@ stages:
           - task: KubernetesManifest@0
             inputs:
               action: 'deploy'
+              kubernetesServiceConnection: "AKS-NEW"
               namespace: 'default'
               manifests: |
                 $(Pipeline.Workspace)/manifests/deployment.yml
