@@ -8,3 +8,22 @@ spec:
     - port: 80 
     selector:
         app: sampleapp
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sampleapp
+spec:
+  ingressClassName: azure-application-gateway
+  rules:
+  - http:
+      paths:
+      - path: /
+        backend:
+          service:
+            name: sampleapp
+            port:
+              number: 80
+        pathType: Exact      
+        
+ 
